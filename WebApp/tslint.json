@@ -1,0 +1,63 @@
+{
+  "defaultSeverity": "warning",
+  "extends": ["tslint:recommended", "tslint-sonarts"],
+  "jsRules": {
+    "trailing-comma": {
+      "options": [{ "multiline": "never", "singleline": "never" }],
+      "severity": "warning"
+    }
+  },
+  "rules": {
+    "max-line-length": false,
+    "ban-comma-operator": {
+      "severity": "warning"
+    },
+    "ordered-imports": {
+      "severity": "none"
+    },
+    "no-reference": {
+      "severity": "error"
+    },
+    "no-parameter-reassignment": {
+      "severity": "error"
+    },
+    "no-import-side-effect": {
+      "severity": "none"
+    },
+    "comment-format": {
+      "severity": "none"
+    },
+    "no-var-keyword": {
+      "severity": "error"
+    },
+    "object-literal-sort-keys": {
+      "severity": "none"
+    },
+    "member-access": {
+      "severity": "none"
+    },
+    "whitespace": {
+      "severity": "warning"
+    },
+    "semicolon": {
+      "severity": "warning"
+    },
+    "triple-equals": {
+      "severity": "none"
+    },
+    "trailing-comma": {
+      "options": [{ "multiline": "never", "singleline": "never" }],
+      "severity": "warning"
+    },
+    "interface-name": {
+      "severity": "warning"
+    }
+  },
+  "rulesDirectory": [],
+  "cliOptions": {
+    "exclude": ["node_modules/**"]
+  },
+  "linterOptions": {
+    "exclude": ["node_modules/**"]
+  }
+}
