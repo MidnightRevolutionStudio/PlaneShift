@@ -17,10 +17,10 @@ def GetRaces():
 
         stored_data["name"] = sing_race_json["name"]
         stored_data["speed"] = sing_race_json["speed"]
-        stored_data["abilityBonuses"] =[]
+        stored_data["attributeMods"] =[]
         i = 0
         for i in range(len(sing_race_json["ability_bonuses"])):
-            stored_data["abilityBonuses"].append( {"name" : sing_race_json["ability_bonuses"][i]["ability_score"]["name"], "bonus" : sing_race_json["ability_bonuses"][i]["bonus"]} )
+            stored_data["attributeMods"].append( {"name" : sing_race_json["ability_bonuses"][i]["ability_score"]["name"], "bonus" : sing_race_json["ability_bonuses"][i]["bonus"]} )
         stored_data["alignment"] = sing_race_json["alignment"]
         stored_data["age"] = sing_race_json["age"]
         stored_data["size"] = sing_race_json["size"]
@@ -28,15 +28,9 @@ def GetRaces():
         if len(sing_race_json["subraces"]) > 0:
             subList = []
             for i in range(len(sing_race_json["subraces"])):
-                subStore = {}
                 subrace = requests.get(base_url + sing_race_json["subraces"][i]["url"])
                 subrace_json = json.loads(subrace.content)
-                subStore["name"] = subrace_json["name"]
-                subStore["description"] = subrace_json["desc"]
-                subStore["abilityBonuses"] = []
-                for j in range(len(subrace_json["ability_bonuses"])):
-                    subStore["abilityBonuses"].append( {"name" : subrace_json["ability_bonuses"][j]["ability_score"]["name"], "bonus" : subrace_json["ability_bonuses"][j]["bonus"]} )
-                subList.append(subStore)
+                subList.append(subrace_json["name"])
 
             stored_data["subRaces"] = subList
         else:
@@ -82,11 +76,44 @@ def GetClasses():
         f.close()
         print("finished " + rClass["name"])
 
+    
+    os.chdir("../")
+
+def GetSubRace():
+    sr = requests.get(base_url + '/api/subraces')
+    sr_json = json.loads(sr.content)
+
+    os.chdir(os.getcwd() + "/Subraces")
+    for subR in sr_json["results"]:
+        stored_data = {}
+        sing_sr = requests.get(base_url + subR["url"])
+        sing_sr_json = json.loads(sing_sr.content)
+
+        stored_data["name"] = sing_sr_json["name"]
+        stored_data["race"] = sing_sr_json["race"]["name"]
+        stored_data["description"] = sing_sr_json["desc"]
+        stored_data["attributeMods"] = []
+        for i in range(len(sing_sr_json["ability_bonuses"])):
+            stored_data["attributeMods"].append( {"name" : sing_sr_json["ability_bonuses"][i]["ability_score"]["name"], "value" : sing_sr_json["ability_bonuses"][i]["bonus"]} )
+        
+
+        f = open(sing_sr_json["name"] + ".json", "w")
+        f.write(json.dumps(stored_data, indent=2))
+        f.close()
+        print("finished " + sing_sr_json["name"])
+
+    
+    os.chdir("../")        
+
+
+
+
 
 os.chdir(os.getcwd() + "/ApiScrape")
 
-GetRaces()
-GetClasses()
+#GetRaces()
+#GetClasses()
+GetSubRace()
 
 #print(r_json["count"])
 

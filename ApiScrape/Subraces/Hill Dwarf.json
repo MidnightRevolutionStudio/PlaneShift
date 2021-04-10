@@ -1,0 +1,11 @@
+{
+  "name": "Hill Dwarf",
+  "race": "Dwarf",
+  "description": "As a hill dwarf, you have keen senses, deep intuition, and remarkable resilience.",
+  "attributeMods": [
+    {
+      "name": "WIS",
+      "value": 1
+    }
+  ]
+}

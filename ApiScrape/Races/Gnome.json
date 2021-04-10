@@ -12,15 +12,6 @@
   "size": "Small",
   "sizeDescription": "Gnomes are between 3 and 4 feet tall and average about 40 pounds. Your size is Small.",
   "subRaces": [
-    {
-      "name": "Rock Gnome",
-      "description": "As a rock gnome, you have a natural inventiveness and hardiness beyond that of other gnomes.",
-      "abilityBonuses": [
-        {
-          "name": "CON",
-          "bonus": 1
-        }
-      ]
-    }
+    "Rock Gnome"
   ]
 }
