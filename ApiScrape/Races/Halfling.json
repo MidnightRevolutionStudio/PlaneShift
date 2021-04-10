@@ -1,7 +1,7 @@
 {
   "name": "Halfling",
   "speed": 25,
-  "abilityBonuses": [
+  "attributeMods": [
     {
       "name": "DEX",
       "bonus": 2
