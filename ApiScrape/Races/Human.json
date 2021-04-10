@@ -1,0 +1,35 @@
+{
+  "Name": "Human",
+  "Speed": 30,
+  "AbilityBonuses": [
+    {
+      "Name": "STR",
+      "Bonus": 1
+    },
+    {
+      "Name": "DEX",
+      "Bonus": 1
+    },
+    {
+      "Name": "CON",
+      "Bonus": 1
+    },
+    {
+      "Name": "INT",
+      "Bonus": 1
+    },
+    {
+      "Name": "WIS",
+      "Bonus": 1
+    },
+    {
+      "Name": "CHA",
+      "Bonus": 1
+    }
+  ],
+  "Alignment": "Humans tend toward no particular alignment. The best and the worst are found among them.",
+  "Age": "Humans reach adulthood in their late teens and live less than a century.",
+  "Size": "Medium",
+  "SizeDescription": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+  "SubRaces": []
+}
