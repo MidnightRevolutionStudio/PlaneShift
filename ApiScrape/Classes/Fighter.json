@@ -1,19 +1,19 @@
 {
-  "Name": "Fighter",
-  "HealthDie": 10,
-  "SavingThrows": [
+  "name": "Fighter",
+  "healthDie": 10,
+  "savingThrows": [
     {
-      "Name": "STR"
+      "name": "STR"
     },
     {
-      "Name": "CON"
+      "name": "CON"
     }
   ],
-  "Subclasses": [
+  "subclasses": [
     {
-      "Name": "Champion",
-      "SubclassFlavor": "Martial Archetype",
-      "Description": [
+      "name": "Champion",
+      "subclassFlavor": "Martial Archetype",
+      "description": [
         "The archetypal Champion focuses on the development of raw physical power honed to deadly perfection. Those who model themselves on this archetype combine rigorous training with physical excellence to deal devastating blows."
       ]
     }

@@ -1,19 +1,19 @@
 {
-  "Name": "Wizard",
-  "HealthDie": 6,
-  "SavingThrows": [
+  "name": "Wizard",
+  "healthDie": 6,
+  "savingThrows": [
     {
-      "Name": "INT"
+      "name": "INT"
     },
     {
-      "Name": "WIS"
+      "name": "WIS"
     }
   ],
-  "Subclasses": [
+  "subclasses": [
     {
-      "Name": "Evocation",
-      "SubclassFlavor": "Arcane Tradition",
-      "Description": [
+      "name": "Evocation",
+      "subclassFlavor": "Arcane Tradition",
+      "description": [
         "You focus your study on magic that creates powerful elemental effects such as bitter cold, searing flame, rolling thunder, crackling lightning, and burning acid. Some evokers find employment in military forces, serving as artillery to blast enemy armies from afar. Others use their spectacular power to protect the weak, while some seek their own gain as bandits, adventurers, or aspiring tyrants."
       ]
     }
