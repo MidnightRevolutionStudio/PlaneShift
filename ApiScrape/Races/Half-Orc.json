@@ -1,19 +1,19 @@
 {
-  "Name": "Half-Orc",
-  "Speed": 30,
-  "AbilityBonuses": [
+  "name": "Half-Orc",
+  "speed": 30,
+  "abilityBonuses": [
     {
-      "Name": "STR",
-      "Bonus": 2
+      "name": "STR",
+      "bonus": 2
     },
     {
-      "Name": "CON",
-      "Bonus": 1
+      "name": "CON",
+      "bonus": 1
     }
   ],
-  "Alignment": " Half-orcs inherit a tendency toward chaos from their orc parents and are not strongly inclined toward good. Half-orcs raised among orcs and willing to live out their lives among them are usually evil.",
-  "Age": "Half-orcs mature a little faster than humans, reaching adulthood around age 14. They age noticeably faster and rarely live longer than 75 years.",
-  "Size": "Medium",
-  "SizeDescription": "Half-orcs are somewhat larger and bulkier than humans, and they range from 5 to well over 6 feet tall. Your size is Medium.",
-  "SubRaces": []
+  "alignment": " Half-orcs inherit a tendency toward chaos from their orc parents and are not strongly inclined toward good. Half-orcs raised among orcs and willing to live out their lives among them are usually evil.",
+  "age": "Half-orcs mature a little faster than humans, reaching adulthood around age 14. They age noticeably faster and rarely live longer than 75 years.",
+  "size": "Medium",
+  "sizeDescription": "Half-orcs are somewhat larger and bulkier than humans, and they range from 5 to well over 6 feet tall. Your size is Medium.",
+  "subRaces": []
 }

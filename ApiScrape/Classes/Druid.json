@@ -1,19 +1,19 @@
 {
-  "Name": "Druid",
-  "HealthDie": 8,
-  "SavingThrows": [
+  "name": "Druid",
+  "healthDie": 8,
+  "savingThrows": [
     {
-      "Name": "INT"
+      "name": "INT"
     },
     {
-      "Name": "WIS"
+      "name": "WIS"
     }
   ],
-  "Subclasses": [
+  "subclasses": [
     {
-      "Name": "Land",
-      "SubclassFlavor": "Druid Circle",
-      "Description": [
+      "name": "Land",
+      "subclassFlavor": "Druid Circle",
+      "description": [
         "The Circle of the Land is made up of mystics and sages who safeguard ancient knowledge and rites through a vast oral tradition. These druids meet within sacred circles of trees or standing stones to whisper primal secrets in Druidic. The circle's wisest members preside as the chief priests of communities that hold to the Old Faith and serve as advisors to the rulers of those folk. As a member of this circle, your magic is influenced by the land where you were initiated into the circle's mysterious rites."
       ]
     }

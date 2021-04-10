@@ -1,24 +1,24 @@
 {
-  "Name": "Gnome",
-  "Speed": 25,
-  "AbilityBonuses": [
+  "name": "Gnome",
+  "speed": 25,
+  "abilityBonuses": [
     {
-      "Name": "INT",
-      "Bonus": 2
+      "name": "INT",
+      "bonus": 2
     }
   ],
-  "Alignment": "Gnomes are most often good. Those who tend toward law are sages, engineers, researchers, scholars, investigators, or inventors. Those who tend toward chaos are minstrels, tricksters, wanderers, or fanciful jewelers. Gnomes are good-hearted, and even the tricksters among them are more playful than vicious.",
-  "Age": " Gnomes mature at the same rate humans do, and most are expected to settle down into an adult life by around age 40. They can live 350 to almost 500 years.",
-  "Size": "Small",
-  "SizeDescription": "Gnomes are between 3 and 4 feet tall and average about 40 pounds. Your size is Small.",
-  "SubRaces": [
+  "alignment": "Gnomes are most often good. Those who tend toward law are sages, engineers, researchers, scholars, investigators, or inventors. Those who tend toward chaos are minstrels, tricksters, wanderers, or fanciful jewelers. Gnomes are good-hearted, and even the tricksters among them are more playful than vicious.",
+  "age": " Gnomes mature at the same rate humans do, and most are expected to settle down into an adult life by around age 40. They can live 350 to almost 500 years.",
+  "size": "Small",
+  "sizeDescription": "Gnomes are between 3 and 4 feet tall and average about 40 pounds. Your size is Small.",
+  "subRaces": [
     {
-      "Name": "Rock Gnome",
-      "Description": "As a rock gnome, you have a natural inventiveness and hardiness beyond that of other gnomes.",
-      "AbilityBonuses": [
+      "name": "Rock Gnome",
+      "description": "As a rock gnome, you have a natural inventiveness and hardiness beyond that of other gnomes.",
+      "abilityBonuses": [
         {
-          "Name": "CON",
-          "Bonus": 1
+          "name": "CON",
+          "bonus": 1
         }
       ]
     }
