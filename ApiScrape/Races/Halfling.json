@@ -12,15 +12,6 @@
   "size": "Small",
   "sizeDescription": "Halflings average about 3 feet tall and weigh about 40 pounds. Your size is Small.",
   "subRaces": [
-    {
-      "name": "Lightfoot Halfling",
-      "description": "As a lightfoot halfling, you can easily hide from notice, even using other people as cover. You're inclined to be affable and get along well with others. Lightfoots are more prone to wanderlust than other halflings, and often dwell alongside other races or take up a nomadic life.",
-      "abilityBonuses": [
-        {
-          "name": "CHA",
-          "bonus": 1
-        }
-      ]
-    }
+    "Lightfoot Halfling"
   ]
 }

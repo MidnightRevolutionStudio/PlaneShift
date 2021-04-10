@@ -12,15 +12,6 @@
   "size": "Medium",
   "sizeDescription": "Dwarves stand between 4 and 5 feet tall and average about 150 pounds. Your size is Medium.",
   "subRaces": [
-    {
-      "name": "Hill Dwarf",
-      "description": "As a hill dwarf, you have keen senses, deep intuition, and remarkable resilience.",
-      "abilityBonuses": [
-        {
-          "name": "WIS",
-          "bonus": 1
-        }
-      ]
-    }
+    "Hill Dwarf"
   ]
 }
