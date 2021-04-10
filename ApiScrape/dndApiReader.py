@@ -102,15 +102,34 @@ def GetSubRace():
     os.chdir("../")        
 
 def GetAttributes():
-    a_json = HitApi('api/ability-scores')
+    a_json = HitApi('/api/ability-scores')
+    os.chdir(os.getcwd() + "/Attributes")
 
+    for sing_a in a_json["results"]:
+        a = HitApi(sing_a["url"])
+        data = {}
+
+        data["name"] = a["full_name"]
+        data["abreviation"] = a["name"]
+        data["description"] = a["desc"]
+        data["skills"] = []
+        for i in range(len(a["skills"])):
+            data["skills"].append(a["skills"][i]["name"])
+
+        f= open(a["full_name"] + ".json", "w")
+        f.write(json.dumps(data, indent=2))
+        f.close()
+        print("finished " + a["name"])
+
+    os.chdir("../")
 
 
 os.chdir(os.getcwd() + "/ApiScrape")
 
-GetRaces()
-GetClasses()
-GetSubRace()
+#GetRaces()
+#GetClasses()
+#GetSubRace()
+GetAttributes()
 
 #print(r_json["count"])
 
