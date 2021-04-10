@@ -1,6 +1,6 @@
 class Subrace {
     name:string;
-    race:PlayerRace;
+    race:string;
     attributeMods:Attribute[];
     constructor() {
         

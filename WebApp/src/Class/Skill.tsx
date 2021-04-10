@@ -1,6 +1,6 @@
 class Skill {
     name:string;
-    attribute:Attribute;
+    attribute:string;
     constructor(name:string,attribute:Attribute) {
         
     }

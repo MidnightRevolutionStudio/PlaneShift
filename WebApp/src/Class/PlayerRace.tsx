@@ -1,8 +1,12 @@
 class PlayerRace implements IRace {
     name:string;
-    size:string;
-    subrace:Subrace;
+    speed: number;
     attributeMods:Attribute[];
+    alignment:string;
+    size:string;
+    sizeDescription:string;
+    age:string;
+    subraces:string[];
 
     constructor() {
         
