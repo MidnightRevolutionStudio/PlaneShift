@@ -1,19 +1,19 @@
 {
-  "Name": "Barbarian",
-  "HealthDie": 12,
-  "SavingThrows": [
+  "name": "Barbarian",
+  "healthDie": 12,
+  "savingThrows": [
     {
-      "Name": "STR"
+      "name": "STR"
     },
     {
-      "Name": "CON"
+      "name": "CON"
     }
   ],
-  "Subclasses": [
+  "subclasses": [
     {
-      "Name": "Berserker",
-      "SubclassFlavor": "Primal Path",
-      "Description": [
+      "name": "Berserker",
+      "subclassFlavor": "Primal Path",
+      "description": [
         "For some barbarians, rage is a means to an end--that end being violence. The Path of the Berserker is a path of untrammeled fury, slick with blood. As you enter the berserker's rage, you thrill in the chaos of battle, heedless of your own health or well-being."
       ]
     }
