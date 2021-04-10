@@ -1,0 +1,3 @@
+interface IRace {
+    name:string;
+}
