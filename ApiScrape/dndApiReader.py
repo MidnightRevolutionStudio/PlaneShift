@@ -3,15 +3,13 @@ import json
 import os
 
 print("starting read from DND Api")
-os.chdir("F://")
 base_url = 'https://www.dnd5eapi.co'
 
 def GetRaces():
     r = requests.get(base_url + '/api/races')
 
     r_json = json.loads(r.content)
-
-    os.chdir("F://DndApiReader")
+    os.chdir(os.getcwd() + "/ApiScrapes")
     os.chdir(os.getcwd() + "/Races")
     for race in r_json["results"]:
         stored_data = {}
@@ -56,19 +54,39 @@ def GetClasses():
 
     r_json = json.loads(r.content)
 
-    os.chdir("F://DndApiReader")
     os.chdir(os.getcwd() + "/Classes")
     for rClass in r_json["results"]:
         stored_data = {}
         sing_rClass = requests.get(base_url + rClass["url"])
         sing_rClass_json = json.loads(sing_rClass.content)
 
+        stored_data["Name"] = sing_rClass_json["name"]
+        stored_data["HealthDie"] = sing_rClass_json["hit_die"]
+        stored_data["SavingThrows"] = []
+        for i in range(len(sing_rClass_json["saving_throws"])):
+            stored_data["SavingThrows"].append( { "Name" : sing_rClass_json["saving_throws"][i]["name"] } )
+        stored_data["Subclasses"] = []
+        for i in range(len(sing_rClass_json["subclasses"])):
+            store_sub = {}
+            subC = requests.get(base_url + sing_rClass_json["subclasses"][i]["url"])
+            subC_json = json.loads(subC.content)
+
+            store_sub["Name"] = subC_json["name"]
+            store_sub["SubclassFlavor"] = subC_json["subclass_flavor"]
+            store_sub["Description"] = subC_json["desc"]
+
+            stored_data["Subclasses"].append(store_sub)
+
+
         f = open(rClass["name"] + ".json", "w")
-        f.write(json.dumps(sing_rClass_json, indent=2))
+        f.write(json.dumps(stored_data, indent=2))
         f.close()
         print("finished " + rClass["name"])
 
-#GetRaces()
+
+os.chdir(os.getcwd() + "/ApiScrape")
+
+GetRaces()
 GetClasses()
 
 #print(r_json["count"])
