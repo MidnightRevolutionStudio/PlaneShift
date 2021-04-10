@@ -3,7 +3,6 @@ import json
 import os
 
 print("starting read from DND Api")
-os.chdir("F://")
 base_url = 'https://www.dnd5eapi.co'
 
 def GetRaces():
@@ -11,7 +10,6 @@ def GetRaces():
 
     r_json = json.loads(r.content)
 
-    os.chdir("F://DndApiReader")
     os.chdir(os.getcwd() + "/Races")
     for race in r_json["results"]:
         stored_data = {}
