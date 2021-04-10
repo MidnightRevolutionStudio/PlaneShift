@@ -1,0 +1,19 @@
+{
+  "Name": "Tiefling",
+  "Speed": 30,
+  "AbilityBonuses": [
+    {
+      "Name": "INT",
+      "Bonus": 1
+    },
+    {
+      "Name": "CHA",
+      "Bonus": 2
+    }
+  ],
+  "Alignment": "Tieflings might not have an innate tendency toward evil, but many of them end up there. Evil or not, an independent nature inclines many tieflings toward a chaotic alignment.",
+  "Age": "Tieflings mature at the same rate as humans but live a few years longer.",
+  "Size": "Medium",
+  "SizeDescription": "Tieflings are about the same size and build as humans. Your size is Medium.",
+  "SubRaces": []
+}

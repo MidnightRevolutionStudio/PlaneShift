@@ -1,0 +1,26 @@
+{
+  "Name": "Halfling",
+  "Speed": 25,
+  "AbilityBonuses": [
+    {
+      "Name": "DEX",
+      "Bonus": 2
+    }
+  ],
+  "Alignment": "Most halflings are lawful good. As a rule, they are good-hearted and kind, hate to see others in pain, and have no tolerance for oppression. They are also very orderly and traditional, leaning heavily on the support of their community and the comfort of their old ways.",
+  "Age": "A halfling reaches adulthood at the age of 20 and generally lives into the middle of his or her second century.",
+  "Size": "Small",
+  "SizeDescription": "Halflings average about 3 feet tall and weigh about 40 pounds. Your size is Small.",
+  "SubRaces": [
+    {
+      "Name": "Lightfoot Halfling",
+      "Description": "As a lightfoot halfling, you can easily hide from notice, even using other people as cover. You're inclined to be affable and get along well with others. Lightfoots are more prone to wanderlust than other halflings, and often dwell alongside other races or take up a nomadic life.",
+      "AbilityBonuses": [
+        {
+          "Name": "CHA",
+          "Bonus": 1
+        }
+      ]
+    }
+  ]
+}
