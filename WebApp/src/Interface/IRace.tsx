@@ -1,7 +1,7 @@
 interface IRace {
-    name:string;
+    name: string;
     speed: number;
-    attributeMods:Attribute[];
-    alignment:string;
-    size:string;
+    attributeMods: Attribute[];
+    alignment: string;
+    size: string;
 }

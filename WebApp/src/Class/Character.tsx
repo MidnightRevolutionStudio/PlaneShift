@@ -3,11 +3,11 @@ class Character implements ICreature {
     race: PlayerRace;
     attributes: IAttribute[];
     class: IClass;
-    skills: Skill[];
-    background:string;
-    abilities: IAbility[];
+    skills: Skill[]; //todo
+    background: string; //todo
+    abilities: IAbility[]; //todo
     proficiencies: IProficiency[];
-    languages:string[];
+    languages: string[];
 
     name: string;
     armorClass: number;

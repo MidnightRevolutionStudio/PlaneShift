@@ -1,3 +1,3 @@
 interface ICreature {
-    race:IRace;
+    race: IRace;
 }
