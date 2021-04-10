@@ -123,13 +123,32 @@ def GetAttributes():
 
     os.chdir("../")
 
+def GetSkills():
+    os.chdir(os.getcwd() + "/Skills")
+    s_json = HitApi('/api/skills')
+
+    for sing_s in s_json["results"]:
+        data = {}
+        s = HitApi(sing_s["url"])
+        data["name"] = s["name"]
+        data["description"] = s["desc"]
+        data["attribute"] = s["ability_score"]["name"]
+
+        f = open(s["name"] + ".json", "w")
+        f.write(json.dumps(data, indent=2))
+        f.close()
+        print("finished " + s["name"])
+
+    os.chdir("../")
+
 
 os.chdir(os.getcwd() + "/ApiScrape")
 
 #GetRaces()
 #GetClasses()
 #GetSubRace()
-GetAttributes()
+#GetAttributes()
+GetSkills()
 
 #print(r_json["count"])
 
