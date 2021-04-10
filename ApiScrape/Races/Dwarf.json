@@ -1,7 +1,7 @@
 {
   "name": "Dwarf",
   "speed": 25,
-  "abilityBonuses": [
+  "attributeMods": [
     {
       "name": "CON",
       "bonus": 2

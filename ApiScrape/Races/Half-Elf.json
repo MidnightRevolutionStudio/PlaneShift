@@ -1,7 +1,7 @@
 {
   "name": "Half-Elf",
   "speed": 30,
-  "abilityBonuses": [
+  "attributeMods": [
     {
       "name": "CHA",
       "bonus": 2

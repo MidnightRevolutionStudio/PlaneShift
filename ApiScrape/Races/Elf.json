@@ -1,7 +1,7 @@
 {
   "name": "Elf",
   "speed": 30,
-  "abilityBonuses": [
+  "attributeMods": [
     {
       "name": "DEX",
       "bonus": 2

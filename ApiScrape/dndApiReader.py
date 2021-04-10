@@ -5,15 +5,18 @@ import os
 print("starting read from DND Api")
 base_url = 'https://www.dnd5eapi.co'
 
-def GetRaces():
-    r = requests.get(base_url + '/api/races')
 
+def HitApi(urlExt):
+    r = requests.get(base_url + urlExt)
     r_json = json.loads(r.content)
+    return r_json
+
+def GetRaces():
+    r_json = HitApi('/api/races')
     os.chdir(os.getcwd() + "/Races")
     for race in r_json["results"]:
         stored_data = {}
-        sing_race = requests.get(base_url + race["url"])
-        sing_race_json = json.loads(sing_race.content)
+        sing_race_json = HitApi(race["url"])
 
         stored_data["name"] = sing_race_json["name"]
         stored_data["speed"] = sing_race_json["speed"]
@@ -28,8 +31,7 @@ def GetRaces():
         if len(sing_race_json["subraces"]) > 0:
             subList = []
             for i in range(len(sing_race_json["subraces"])):
-                subrace = requests.get(base_url + sing_race_json["subraces"][i]["url"])
-                subrace_json = json.loads(subrace.content)
+                subrace_json = HitApi(sing_race_json["subraces"][i]["url"])
                 subList.append(subrace_json["name"])
 
             stored_data["subRaces"] = subList
@@ -43,15 +45,12 @@ def GetRaces():
     os.chdir("../")
 
 def GetClasses():
-    r = requests.get(base_url + '/api/classes')
-
-    r_json = json.loads(r.content)
+    r_json = HitApi('/api/classes')
 
     os.chdir(os.getcwd() + "/Classes")
     for rClass in r_json["results"]:
         stored_data = {}
-        sing_rClass = requests.get(base_url + rClass["url"])
-        sing_rClass_json = json.loads(sing_rClass.content)
+        sing_rClass_json = HitApi(rClass["url"])
 
         stored_data["name"] = sing_rClass_json["name"]
         stored_data["healthDie"] = sing_rClass_json["hit_die"]
@@ -61,8 +60,7 @@ def GetClasses():
         stored_data["subclasses"] = []
         for i in range(len(sing_rClass_json["subclasses"])):
             store_sub = {}
-            subC = requests.get(base_url + sing_rClass_json["subclasses"][i]["url"])
-            subC_json = json.loads(subC.content)
+            subC_json = HitApi(sing_rClass_json["subclasses"][i]["url"])
 
             store_sub["name"] = subC_json["name"]
             store_sub["subclassFlavor"] = subC_json["subclass_flavor"]
@@ -80,14 +78,12 @@ def GetClasses():
     os.chdir("../")
 
 def GetSubRace():
-    sr = requests.get(base_url + '/api/subraces')
-    sr_json = json.loads(sr.content)
+    sr_json = HitApi('/api/subraces')
 
     os.chdir(os.getcwd() + "/Subraces")
     for subR in sr_json["results"]:
         stored_data = {}
-        sing_sr = requests.get(base_url + subR["url"])
-        sing_sr_json = json.loads(sing_sr.content)
+        sing_sr_json = HitApi(subR["url"])
 
         stored_data["name"] = sing_sr_json["name"]
         stored_data["race"] = sing_sr_json["race"]["name"]
@@ -105,15 +101,35 @@ def GetSubRace():
     
     os.chdir("../")        
 
+def GetAttributes():
+    a_json = HitApi('/api/ability-scores')
+    os.chdir(os.getcwd() + "/Attributes")
 
+    for sing_a in a_json["results"]:
+        a = HitApi(sing_a["url"])
+        data = {}
 
+        data["name"] = a["full_name"]
+        data["abreviation"] = a["name"]
+        data["description"] = a["desc"]
+        data["skills"] = []
+        for i in range(len(a["skills"])):
+            data["skills"].append(a["skills"][i]["name"])
+
+        f= open(a["full_name"] + ".json", "w")
+        f.write(json.dumps(data, indent=2))
+        f.close()
+        print("finished " + a["name"])
+
+    os.chdir("../")
 
 
 os.chdir(os.getcwd() + "/ApiScrape")
 
 #GetRaces()
 #GetClasses()
-GetSubRace()
+#GetSubRace()
+GetAttributes()
 
 #print(r_json["count"])
 

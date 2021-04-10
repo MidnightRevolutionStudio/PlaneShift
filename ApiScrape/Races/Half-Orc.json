@@ -1,7 +1,7 @@
 {
   "name": "Half-Orc",
   "speed": 30,
-  "abilityBonuses": [
+  "attributeMods": [
     {
       "name": "STR",
       "bonus": 2
