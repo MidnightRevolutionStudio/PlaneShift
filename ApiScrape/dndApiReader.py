@@ -174,11 +174,9 @@ def GetBackgrounds():
 
     os.chdir("../")
 
-def GetAbilities():
-    os.chdir(os.getcwd() + "/Abilities")
-    #Features
+def GetFeatures():
+    to_return = []
     fea_json = HitApi("/api/features")
-    final_file = []
     for sing_fea in fea_json["results"]:
         data = {}
         fea = HitApi(sing_fea["url"])
@@ -194,8 +192,46 @@ def GetAbilities():
         if("group" in fea):
             data["group"] = fea["group"]
 
-        final_file.append(data)
+        to_return.append(data)
         print("finished " + fea["name"])
+    return to_return
+
+def GetTraits():
+    to_return = []
+    trait_json = HitApi("/api/traits")
+    for sing_tra in trait_json["results"]:
+        data = {}
+        t = HitApi(sing_tra["url"])
+
+        data["name"] = t["name"]
+        data["races"] = []
+        for i in range(len(t["races"])):
+            data["races"].append(t["races"][i]["name"])
+        data["subraces"] = []
+        for i in range(len(t["subraces"])):
+            data["subraces"].append(t["subraces"][i]["name"])
+        data["proficiencies"] = []
+        if(len(t["proficiencies"]) > 0):
+            for i in range(len(t["proficiencies"])):
+                data["proficiencies"].append(t["proficiencies"][i]["name"])
+        data["description"] = t["desc"]
+
+        to_return.append(data)
+        print("finished " + t["name"])
+
+    return to_return
+
+def GetAbilities():
+    os.chdir(os.getcwd() + "/Abilities")
+    #Features
+    final_file = []
+    feas= GetFeatures()
+    for fea in feas:
+        final_file.append(fea)
+    
+    tras = GetTraits()
+    for tra in tras:
+        final_file.append(tra)
 
     f = open("Abilities.json", "w")
     f.write(json.dumps(final_file, indent=2))
