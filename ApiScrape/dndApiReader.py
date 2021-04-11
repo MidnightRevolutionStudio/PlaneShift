@@ -141,6 +141,38 @@ def GetSkills():
 
     os.chdir("../")
 
+def GetBackgrounds():
+    os.chdir(os.getcwd() + "/Backgrounds")
+    b_json = HitApi('/api/backgrounds')
+
+    for sing_b in b_json["results"]:
+        data = {}
+        b = HitApi('/api/backgrounds/' + sing_b["index"])
+
+        data["name"] = b["name"]
+        data["startingProficiencies"] = []
+        for i in range(len(b["starting_proficiencies"])):
+            data["startingProficiencies"].append(b["starting_proficiencies"][i]["name"].split()[1])
+        data["abilities"] = []
+        data["abilities"].append( { "name" : b["feature"]["name"], "description" : b["feature"]["desc"] } )
+        data["personality"] = b["personality_traits"]["from"]
+        data["ideals"] = []
+        for i in range(len(b["ideals"]["from"])):
+            store = {}
+            store["description"] = b["ideals"]["from"][i]["desc"]
+            store["alignment"] = []
+            for j in range(len(b["ideals"]["from"][i]["alignments"])):
+                store["alignment"].append(b["ideals"]["from"][i]["alignments"][j]["name"])
+            data["ideals"].append(store)
+        data["bonds"] = b["bonds"]["from"]
+        data["flaws"] = b["flaws"]["from"]
+
+        f = open(b["name"] + ".json", "w")
+        f.write(json.dumps(data, indent=2))
+        f.close()
+        print("finished " + b["name"])
+
+    os.chdir("../")
 
 os.chdir(os.getcwd() + "/ApiScrape")
 
@@ -148,7 +180,8 @@ os.chdir(os.getcwd() + "/ApiScrape")
 #GetClasses()
 #GetSubRace()
 #GetAttributes()
-GetSkills()
+#GetSkills()
+GetBackgrounds()
 
 #print(r_json["count"])
 
