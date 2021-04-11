@@ -174,6 +174,35 @@ def GetBackgrounds():
 
     os.chdir("../")
 
+def GetAbilities():
+    os.chdir(os.getcwd() + "/Abilities")
+    #Features
+    fea_json = HitApi("/api/features")
+    final_file = []
+    for sing_fea in fea_json["results"]:
+        data = {}
+        fea = HitApi(sing_fea["url"])
+        data["name"] = fea["name"]
+        data["requirement"] = [{ "type" : "class", "reqName" : fea["class"]["name"], "level" : fea["level"] if "level" in fea else 0 }]
+        for i in range(len(fea["prerequisites"])):
+            if(fea["prerequisites"][i]["type"] == "Spell"):
+                data['requirement'].append( { "type" : "spell", "reqName" : "Eldritch Blast" } )
+            elif(fea["prerequisites"][i]["type"] == "feature"):
+                reqFea = HitApi(fea["prerequisites"][i]["feature"])
+                data['requirement'].append( { "type" : "feature", "reqName" : reqFea["name"] } )
+        data["description"] = fea["desc"]
+        if("group" in fea):
+            data["group"] = fea["group"]
+
+        final_file.append(data)
+        print("finished " + fea["name"])
+
+    f = open("Abilities.json", "w")
+    f.write(json.dumps(final_file, indent=2))
+    f.close()
+
+    os.chdir("../")
+
 os.chdir(os.getcwd() + "/ApiScrape")
 
 #GetRaces()
@@ -181,7 +210,8 @@ os.chdir(os.getcwd() + "/ApiScrape")
 #GetSubRace()
 #GetAttributes()
 #GetSkills()
-GetBackgrounds()
+#GetBackgrounds()
+GetAbilities()
 
 #print(r_json["count"])
 
