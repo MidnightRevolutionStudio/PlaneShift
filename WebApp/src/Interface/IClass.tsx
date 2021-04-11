@@ -10,9 +10,3 @@ export interface IClass {
     proficiencies: IProficiency[];
     skills: Skill[];
 }
-
-export interface ISubclass {
-    name: string;
-    subclassFlavor: string;
-    description: string[];
-}
