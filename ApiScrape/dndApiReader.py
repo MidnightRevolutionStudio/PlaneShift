@@ -123,13 +123,131 @@ def GetAttributes():
 
     os.chdir("../")
 
+def GetSkills():
+    os.chdir(os.getcwd() + "/Skills")
+    s_json = HitApi('/api/skills')
+
+    for sing_s in s_json["results"]:
+        data = {}
+        s = HitApi(sing_s["url"])
+        data["name"] = s["name"]
+        data["description"] = s["desc"]
+        data["attribute"] = s["ability_score"]["name"]
+
+        f = open(s["name"] + ".json", "w")
+        f.write(json.dumps(data, indent=2))
+        f.close()
+        print("finished " + s["name"])
+
+    os.chdir("../")
+
+def GetBackgrounds():
+    os.chdir(os.getcwd() + "/Backgrounds")
+    b_json = HitApi('/api/backgrounds')
+
+    for sing_b in b_json["results"]:
+        data = {}
+        b = HitApi('/api/backgrounds/' + sing_b["index"])
+
+        data["name"] = b["name"]
+        data["startingProficiencies"] = []
+        for i in range(len(b["starting_proficiencies"])):
+            data["startingProficiencies"].append(b["starting_proficiencies"][i]["name"].split()[1])
+        data["abilities"] = []
+        data["abilities"].append( { "name" : b["feature"]["name"], "description" : b["feature"]["desc"] } )
+        data["personality"] = b["personality_traits"]["from"]
+        data["ideals"] = []
+        for i in range(len(b["ideals"]["from"])):
+            store = {}
+            store["description"] = b["ideals"]["from"][i]["desc"]
+            store["alignment"] = []
+            for j in range(len(b["ideals"]["from"][i]["alignments"])):
+                store["alignment"].append(b["ideals"]["from"][i]["alignments"][j]["name"])
+            data["ideals"].append(store)
+        data["bonds"] = b["bonds"]["from"]
+        data["flaws"] = b["flaws"]["from"]
+
+        f = open(b["name"] + ".json", "w")
+        f.write(json.dumps(data, indent=2))
+        f.close()
+        print("finished " + b["name"])
+
+    os.chdir("../")
+
+def GetFeatures():
+    to_return = []
+    fea_json = HitApi("/api/features")
+    for sing_fea in fea_json["results"]:
+        data = {}
+        fea = HitApi(sing_fea["url"])
+        data["name"] = fea["name"]
+        data["requirement"] = [{ "type" : "class", "reqName" : fea["class"]["name"], "level" : fea["level"] if "level" in fea else 0 }]
+        for i in range(len(fea["prerequisites"])):
+            if(fea["prerequisites"][i]["type"] == "Spell"):
+                data['requirement'].append( { "type" : "spell", "reqName" : "Eldritch Blast" } )
+            elif(fea["prerequisites"][i]["type"] == "feature"):
+                reqFea = HitApi(fea["prerequisites"][i]["feature"])
+                data['requirement'].append( { "type" : "feature", "reqName" : reqFea["name"] } )
+        data["description"] = fea["desc"]
+        if("group" in fea):
+            data["group"] = fea["group"]
+
+        to_return.append(data)
+        print("finished " + fea["name"])
+    return to_return
+
+def GetTraits():
+    to_return = []
+    trait_json = HitApi("/api/traits")
+    for sing_tra in trait_json["results"]:
+        data = {}
+        t = HitApi(sing_tra["url"])
+
+        data["name"] = t["name"]
+        data["races"] = []
+        for i in range(len(t["races"])):
+            data["races"].append(t["races"][i]["name"])
+        data["subraces"] = []
+        for i in range(len(t["subraces"])):
+            data["subraces"].append(t["subraces"][i]["name"])
+        data["proficiencies"] = []
+        if(len(t["proficiencies"]) > 0):
+            for i in range(len(t["proficiencies"])):
+                data["proficiencies"].append(t["proficiencies"][i]["name"])
+        data["description"] = t["desc"]
+
+        to_return.append(data)
+        print("finished " + t["name"])
+
+    return to_return
+
+def GetAbilities():
+    os.chdir(os.getcwd() + "/Abilities")
+    #Features
+    final_file = []
+    feas= GetFeatures()
+    for fea in feas:
+        final_file.append(fea)
+    
+    tras = GetTraits()
+    for tra in tras:
+        final_file.append(tra)
+
+    f = open("Abilities.json", "w")
+    f.write(json.dumps(final_file, indent=2))
+    f.close()
+
+    os.chdir("../")
 
 os.chdir(os.getcwd() + "/ApiScrape")
 
 #GetRaces()
 #GetClasses()
 #GetSubRace()
-GetAttributes()
+#GetAttributes()
+#GetSkills()
+#GetBackgrounds()
+GetAbilities()
 
 #print(r_json["count"])
 
