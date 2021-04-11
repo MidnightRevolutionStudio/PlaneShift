@@ -181,10 +181,10 @@ def GetFeatures():
         data = {}
         fea = HitApi(sing_fea["url"])
         data["name"] = fea["name"]
-        data["requirement"] = [{ "type" : "class", "reqName" : fea["class"]["name"], "level" : fea["level"] if "level" in fea else 0 }]
+        data["requirement"] = [{ "type" : "class", "reqName" : [fea["class"]["name"]], "level" : fea["level"] if "level" in fea else 0 }]
         for i in range(len(fea["prerequisites"])):
             if(fea["prerequisites"][i]["type"] == "Spell"):
-                data['requirement'].append( { "type" : "spell", "reqName" : "Eldritch Blast" } )
+                data['requirement'].append( { "type" : "spell", "reqName" : ["Eldritch Blast"] } )
             elif(fea["prerequisites"][i]["type"] == "feature"):
                 reqFea = HitApi(fea["prerequisites"][i]["feature"])
                 data['requirement'].append( { "type" : "feature", "reqName" : reqFea["name"] } )
@@ -204,14 +204,13 @@ def GetTraits():
         t = HitApi(sing_tra["url"])
 
         data["name"] = t["name"]
-        data["races"] = []
+        data["requirement"] = [{ "type" : "race" if len(t["races"]) > 0 else "subrace", "reqNames" : [] }]
         for i in range(len(t["races"])):
-            data["races"].append(t["races"][i]["name"])
-        data["subraces"] = []
+            data["requirement"][0]["reqNames"].append(t["races"][i]["name"])
         for i in range(len(t["subraces"])):
-            data["subraces"].append(t["subraces"][i]["name"])
-        data["proficiencies"] = []
+            data["requirement"][0]["reqNames"].append(t["subraces"][i]["name"])
         if(len(t["proficiencies"]) > 0):
+            data["proficiencies"] = []
             for i in range(len(t["proficiencies"])):
                 data["proficiencies"].append(t["proficiencies"][i]["name"])
         data["description"] = t["desc"]
