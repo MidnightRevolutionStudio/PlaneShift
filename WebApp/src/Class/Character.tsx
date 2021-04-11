@@ -1,25 +1,26 @@
-import { IAbility } from "Interface/IAbility";
 import { IAction } from "Interface/IAction";
-import { IAttribute } from "Interface/IAttribute";
-import { IClass } from "Interface/IClass";
 import { ICreature } from "Interface/ICreature";
 import { IItem } from "Interface/IItem";
-import { IProficiency } from "Interface/IProficiency";
-import { ISpell } from "Interface/ISpell";
+import { Ability } from "./Ability";
+import { Attribute } from "./Attribute";
+import { Background } from "./Background";
+import { Class } from "./Class";
 import { PlayerRace } from "./PlayerRace";
+import { Proficiency } from "./Proficiency";
 import { Serializable } from "./Serializable";
 import { Skill } from "./Skill";
+import { Spell } from "./Spell";
 
 export class Character extends Serializable implements ICreature {
     // MVP
-    race: PlayerRace;
-    attributes: IAttribute[];
-    class: IClass;
-    skills: Skill[]; //todo
-    background: string; //todo
-    abilities: IAbility[]; //todo
-    proficiencies: IProficiency[];
+    abilities: Ability[];
+    attributes: Attribute[];
+    background: Background;
+    class: Class;
     languages: string[];
+    proficiencies: Proficiency[];
+    race: PlayerRace;
+    skills: Skill[];
 
     name: string;
     armorClass: number;
@@ -27,11 +28,13 @@ export class Character extends Serializable implements ICreature {
     actions: IAction[];
     inventory: IItem[];
     level: number;
-    spells: ISpell[];
+    spells: Spell[];
 
     constructor(jsonStr: string) { super(jsonStr); }
 
     Serialize(): string {
         throw new Error("Method not implemented.");
     }
+
+
 }

@@ -1,9 +1,9 @@
-import { ISkill } from "Interface/ISkill";
 import { Serializable } from "./Serializable";
 
-export class Skill extends Serializable implements ISkill {
+export class Requirement extends Serializable {
+    type: string;
     name: string;
-    attribute: string;
+    level?: number;
 
     constructor(jsonStr: string) { super(jsonStr); }
 

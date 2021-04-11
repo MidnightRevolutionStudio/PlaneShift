@@ -1,9 +1,9 @@
-import { Attribute } from "Class/Attribute";
+import { IAttribute } from "./IAttribute";
 
 export interface IRace {
     name: string;
     speed: number;
-    attributeMods: Attribute[];
+    attributeMods: IAttribute[];
     alignment: string;
     size: string;
 }
