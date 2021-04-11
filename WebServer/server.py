@@ -1,5 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import getMgr
+import requestMgr
 
 hostName = "0.0.0.0"
 serverPort = 8080
@@ -10,7 +10,9 @@ class handler(BaseHTTPRequestHandler):
         #mgr parses and sends state updates to appropriate applications
         #mgr returns a status code (and message if needed)
         #handler parses status code and message to return to User
-        getMgr.GetRequestEnging(self)
+        requestMgr.GetRequestEnging(self)
+    def do_POST(self):
+        requestMgr.PostRequestEngine(self)
 
 if __name__ == "__main__":        
     webServer = HTTPServer((hostName, serverPort), handler)
