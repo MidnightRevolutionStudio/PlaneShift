@@ -6,5 +6,5 @@ export enum ProficiencyLevel {
 
 export interface IProficiency {
     name: string;
-    level: number;
+    level: ProficiencyLevel;
 }

@@ -1,13 +1,14 @@
-import { ISkill } from "Interface/ISkill";
+import { IProficiency, ProficiencyLevel } from "Interface/IProficiency";
 import { Serializable } from "./Serializable";
 
-export class Skill extends Serializable implements ISkill {
+export class Proficiency extends Serializable implements IProficiency {
     name: string;
-    attribute: string;
+    level: ProficiencyLevel;
 
     constructor(jsonStr: string) { super(jsonStr); }
 
     Serialize(): string {
         throw new Error("Method not implemented.");
     }
+
 }
