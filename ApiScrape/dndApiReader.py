@@ -1,6 +1,7 @@
 import requests
 import json
 import os
+import time
 
 print("starting read from DND Api")
 base_url = 'https://www.dnd5eapi.co'
@@ -12,6 +13,7 @@ def HitApi(urlExt):
     return r_json
 
 def GetRaces():
+    final_file = []
     r_json = HitApi('/api/races')
     os.chdir(os.getcwd() + "/Races")
     for race in r_json["results"]:
@@ -38,13 +40,16 @@ def GetRaces():
         else:
             stored_data["subRaces"] = []
 
-        f = open(race["name"] + ".json", "w")
-        f.write(json.dumps(stored_data, indent=2))
-        f.close()
+        final_file.append(stored_data)
         print("finished " + race["name"])
+
+    f = open("Races.json", "w")
+    f.write(json.dumps(final_file, indent=2))
+    f.close()
     os.chdir("../")
 
 def GetClasses():
+    final_file = []
     r_json = HitApi('/api/classes')
 
     os.chdir(os.getcwd() + "/Classes")
@@ -68,16 +73,17 @@ def GetClasses():
 
             stored_data["subclasses"].append(store_sub)
 
-
-        f = open(rClass["name"] + ".json", "w")
-        f.write(json.dumps(stored_data, indent=2))
-        f.close()
+        final_file.append(stored_data)
         print("finished " + rClass["name"])
 
     
+    f = open("Classes.json", "w")
+    f.write(json.dumps(final_file, indent=2))
+    f.close()
     os.chdir("../")
 
 def GetSubRace():
+    final_file = []
     sr_json = HitApi('/api/subraces')
 
     os.chdir(os.getcwd() + "/Subraces")
@@ -92,16 +98,16 @@ def GetSubRace():
         for i in range(len(sing_sr_json["ability_bonuses"])):
             stored_data["attributeMods"].append( {"name" : sing_sr_json["ability_bonuses"][i]["ability_score"]["name"], "value" : sing_sr_json["ability_bonuses"][i]["bonus"]} )
         
-
-        f = open(sing_sr_json["name"] + ".json", "w")
-        f.write(json.dumps(stored_data, indent=2))
-        f.close()
+        final_file.append(stored_data)
         print("finished " + sing_sr_json["name"])
 
-    
+    f = open("Subraces.json", "w")
+    f.write(json.dumps(final_file, indent=2))
+    f.close()
     os.chdir("../")        
 
 def GetAttributes():
+    final_file = []
     a_json = HitApi('/api/ability-scores')
     os.chdir(os.getcwd() + "/Attributes")
 
@@ -116,14 +122,15 @@ def GetAttributes():
         for i in range(len(a["skills"])):
             data["skills"].append(a["skills"][i]["name"])
 
-        f= open(a["full_name"] + ".json", "w")
-        f.write(json.dumps(data, indent=2))
-        f.close()
+        final_file.append(data)
         print("finished " + a["name"])
-
+    f= open("Attributes.json", "w")
+    f.write(json.dumps(final_file, indent=2))
+    f.close()
     os.chdir("../")
 
 def GetSkills():
+    final_file = []
     os.chdir(os.getcwd() + "/Skills")
     s_json = HitApi('/api/skills')
 
@@ -134,14 +141,15 @@ def GetSkills():
         data["description"] = s["desc"]
         data["attribute"] = s["ability_score"]["name"]
 
-        f = open(s["name"] + ".json", "w")
-        f.write(json.dumps(data, indent=2))
-        f.close()
-        print("finished " + s["name"])
 
+        print("finished " + s["name"])
+    f = open("Skills.json", "w")
+    f.write(json.dumps(final_file, indent=2))
+    f.close()
     os.chdir("../")
 
 def GetBackgrounds():
+    final_file = []
     os.chdir(os.getcwd() + "/Backgrounds")
     b_json = HitApi('/api/backgrounds')
 
@@ -167,11 +175,14 @@ def GetBackgrounds():
         data["bonds"] = b["bonds"]["from"]
         data["flaws"] = b["flaws"]["from"]
 
-        f = open(b["name"] + ".json", "w")
-        f.write(json.dumps(data, indent=2))
-        f.close()
+        final_file.append(data)
+        
+        
+        
         print("finished " + b["name"])
-
+    f = open("Backgrounds.json", "w")
+    f.write(json.dumps(final_file, indent=2))
+    f.close()
     os.chdir("../")
 
 def GetFeatures():
@@ -240,13 +251,17 @@ def GetAbilities():
 
 os.chdir(os.getcwd() + "/ApiScrape")
 
-#GetRaces()
-#GetClasses()
-#GetSubRace()
-#GetAttributes()
-#GetSkills()
-#GetBackgrounds()
+start = time.time()
+GetRaces()
+GetClasses()
+GetSubRace()
+GetAttributes()
+GetSkills()
+GetBackgrounds()
 GetAbilities()
+end = time.time()
+
+print(end - start)
 
 #print(r_json["count"])
 
