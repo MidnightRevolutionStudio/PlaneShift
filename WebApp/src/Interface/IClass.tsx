@@ -1,4 +1,7 @@
-interface IClass {
+import { Skill } from "Class/Skill";
+import { IProficiency } from "./IProficiency";
+
+export interface IClass {
     name: string;
     healthDie: number;
     savingThrows: string[];
@@ -8,7 +11,7 @@ interface IClass {
     skills: Skill[];
 }
 
-interface ISubclass {
+export interface ISubclass {
     name: string;
     subclassFlavor: string;
     description: string[];

@@ -1,7 +1,12 @@
-class Skill {
+import { Serializable } from "./Serializable";
+
+export class Skill extends Serializable {
     name: string;
     attribute: string;
-    constructor(name: string, attribute: Attribute) {
 
+    constructor(jsonStr: string) { super(jsonStr); }
+
+    Serialize(): string {
+        throw new Error("Method not implemented.");
     }
 }

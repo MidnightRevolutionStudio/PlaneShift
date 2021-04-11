@@ -1,10 +1,10 @@
-enum ProficiencyLevel {
+export enum ProficiencyLevel {
     None = 0,
     Proficient,
     Expertise
 }
 
-interface IProficiency {
+export interface IProficiency {
     name: string;
     level: number;
 }

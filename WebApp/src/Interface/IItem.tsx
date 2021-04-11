@@ -1,3 +1,3 @@
-interface IItem {
+export interface IItem {
 
 }

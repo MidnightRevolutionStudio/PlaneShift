@@ -1,4 +1,8 @@
-class PlayerRace implements IRace {
+import { IRace } from "Interface/IRace";
+import { Attribute } from "./Attribute";
+import { Serializable } from "./Serializable";
+
+export class PlayerRace extends Serializable implements IRace {
     name: string;
     speed: number;
     attributeMods: Attribute[];
@@ -8,7 +12,9 @@ class PlayerRace implements IRace {
     age: string;
     subraces: string[];
 
-    constructor() {
+    constructor(jsonStr: string) { super(jsonStr); }
 
+    Serialize(): string {
+        throw new Error("Method not implemented.");
     }
 }
