@@ -1,3 +1,3 @@
-interface IAbility {
-    
+export interface IAbility {
+
 }

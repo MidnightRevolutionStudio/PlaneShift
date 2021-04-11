@@ -1,11 +1,12 @@
-interface IClass{
-    name:string;
-    level:number;
-    proficiencies:IProficiency[];
-    skills:Skill[];
-    subclass:ISubclass;
-}
+import { Skill } from "Class/Skill";
+import { IProficiency } from "./IProficiency";
 
-interface ISubclass{
-    name:string;
+export interface IClass {
+    name: string;
+    healthDie: number;
+    savingThrows: string[];
+    subclasses: string[];
+    level: number;
+    proficiencies: IProficiency[];
+    skills: Skill[];
 }

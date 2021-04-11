@@ -1,9 +1,13 @@
-class Attribute implements IAttribute {
+import { IAttribute } from "Interface/IAttribute";
+import { Serializable } from "./Serializable";
+
+export class Attribute extends Serializable implements IAttribute {
     name: string;
     value: number;
 
-    constructor(name: string, value: number) {
-        this.name = name;
-        this.value = value;
+    constructor(jsonStr: string) { super(jsonStr); }
+
+    Serialize(): string {
+        throw new Error("Method not implemented.");
     }
 }

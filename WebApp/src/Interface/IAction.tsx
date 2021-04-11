@@ -1,3 +1,3 @@
-interface IAction {
-    
+export interface IAction {
+
 }
