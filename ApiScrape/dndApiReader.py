@@ -15,7 +15,6 @@ def HitApi(urlExt):
 def GetRaces():
     final_file = []
     r_json = HitApi('/api/races')
-    os.chdir(os.getcwd() + "/Races")
     for race in r_json["results"]:
         stored_data = {}
         sing_race_json = HitApi(race["url"])
@@ -43,16 +42,12 @@ def GetRaces():
         final_file.append(stored_data)
         print("finished " + race["name"])
 
-    f = open("Races.json", "w")
-    f.write(json.dumps(final_file, indent=2))
-    f.close()
-    os.chdir("../")
+    return final_file
 
 def GetClasses():
     final_file = []
     r_json = HitApi('/api/classes')
 
-    os.chdir(os.getcwd() + "/Classes")
     for rClass in r_json["results"]:
         stored_data = {}
         sing_rClass_json = HitApi(rClass["url"])
@@ -76,17 +71,12 @@ def GetClasses():
         final_file.append(stored_data)
         print("finished " + rClass["name"])
 
-    
-    f = open("Classes.json", "w")
-    f.write(json.dumps(final_file, indent=2))
-    f.close()
-    os.chdir("../")
+    return final_file
 
 def GetSubRace():
     final_file = []
     sr_json = HitApi('/api/subraces')
 
-    os.chdir(os.getcwd() + "/Subraces")
     for subR in sr_json["results"]:
         stored_data = {}
         sing_sr_json = HitApi(subR["url"])
@@ -101,15 +91,12 @@ def GetSubRace():
         final_file.append(stored_data)
         print("finished " + sing_sr_json["name"])
 
-    f = open("Subraces.json", "w")
-    f.write(json.dumps(final_file, indent=2))
-    f.close()
-    os.chdir("../")        
+
+    return final_file        
 
 def GetAttributes():
     final_file = []
     a_json = HitApi('/api/ability-scores')
-    os.chdir(os.getcwd() + "/Attributes")
 
     for sing_a in a_json["results"]:
         a = HitApi(sing_a["url"])
@@ -124,14 +111,11 @@ def GetAttributes():
 
         final_file.append(data)
         print("finished " + a["name"])
-    f= open("Attributes.json", "w")
-    f.write(json.dumps(final_file, indent=2))
-    f.close()
-    os.chdir("../")
+
+    return final_file
 
 def GetSkills():
     final_file = []
-    os.chdir(os.getcwd() + "/Skills")
     s_json = HitApi('/api/skills')
 
     for sing_s in s_json["results"]:
@@ -141,16 +125,13 @@ def GetSkills():
         data["description"] = s["desc"]
         data["attribute"] = s["ability_score"]["name"]
 
-
+        final_file.append(data)
         print("finished " + s["name"])
-    f = open("Skills.json", "w")
-    f.write(json.dumps(final_file, indent=2))
-    f.close()
-    os.chdir("../")
+
+    return final_file
 
 def GetBackgrounds():
     final_file = []
-    os.chdir(os.getcwd() + "/Backgrounds")
     b_json = HitApi('/api/backgrounds')
 
     for sing_b in b_json["results"]:
@@ -177,13 +158,8 @@ def GetBackgrounds():
 
         final_file.append(data)
         
-        
-        
-        print("finished " + b["name"])
-    f = open("Backgrounds.json", "w")
-    f.write(json.dumps(final_file, indent=2))
-    f.close()
-    os.chdir("../")
+
+    return final_file
 
 def GetFeatures():
     to_return = []
@@ -232,7 +208,6 @@ def GetTraits():
     return to_return
 
 def GetAbilities():
-    os.chdir(os.getcwd() + "/Abilities")
     #Features
     final_file = []
     feas= GetFeatures()
@@ -243,22 +218,24 @@ def GetAbilities():
     for tra in tras:
         final_file.append(tra)
 
-    f = open("Abilities.json", "w")
-    f.write(json.dumps(final_file, indent=2))
-    f.close()
 
-    os.chdir("../")
+    return final_file
 
 os.chdir(os.getcwd() + "/ApiScrape")
 
 start = time.time()
-GetRaces()
-GetClasses()
-GetSubRace()
-GetAttributes()
-GetSkills()
-GetBackgrounds()
-GetAbilities()
+rules = {}
+rules["name"] = "DnD 5E"
+rules["races"] = GetRaces()
+rules["classes"] = GetClasses()
+rules["subRaces"] = GetSubRace()
+rules["attributes"] = GetAttributes()
+rules["skills"] = GetSkills()
+rules["backgrounds"] = GetBackgrounds()
+rules["abilities"] = GetAbilities()
+f = open("Rules.json", "w")
+f.write(json.dumps(rules, indent=2))
+f.close()
 end = time.time()
 
 print(end - start)
